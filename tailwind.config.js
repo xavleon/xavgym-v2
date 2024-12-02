@@ -11,6 +11,12 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        advent: ["'Advent Pro'", "sans-serif"],
+        playfair: ["'Playfair Display'", "serif"],
+        roboto: ["'Roboto'", "sans-serif"],
+        worksans: ["'Work Sans'", "sans-serif"],
+      },
     },
   },
   plugins: [],
