@@ -37,11 +37,7 @@ export default function Navbar() {
                 Profile
               </Link>
             </li>
-            <li>
-              <Link href="/login" className="hover:text-white transition">
-                Login
-              </Link>
-            </li>
+
             <li>
               <Link href="/event" className="hover:text-white transition">
                 Event
@@ -50,6 +46,14 @@ export default function Navbar() {
             <li>
               <Link href="/contact" className="hover:text-white transition">
                 Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/login"
+                className="mt-5 bg-lime-500 text-black font-bold py-2 px-6 rounded hover:bg-lime-600 transition duration-200"
+              >
+                Login
               </Link>
             </li>
           </ul>
