@@ -3,12 +3,17 @@ import { User } from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { generateVerificationCode } from "../utils/generateVerificationCode.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
+import { sendVerificationEmail } from "../mailtrap/emails.js";
 
 export const signup = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, confirmPassword } = req.body;
   try {
-    if (!email || !password || !name) {
+    if (!email || !password || !name || !confirmPassword) {
       throw new Error("Please provide all fields");
+    }
+
+    if (password !== confirmPassword) {
+      throw new Error("Passwords do not match");
     }
 
     const userAlreadyExists = await User.findOne({ email });
@@ -27,9 +32,13 @@ export const signup = async (req, res) => {
     });
 
     await user.save();
-
     // jwt token
-    res.status(201).json({
+    generateTokenAndSetCookie(res, user._id);
+
+    // send verification email
+    await sendVerificationEmail(user.email, verificationToken);
+
+    return res.status(201).json({
       success: true,
       message: "User created successfully",
       user: {
@@ -37,17 +46,15 @@ export const signup = async (req, res) => {
         password: undefined,
       },
     });
-
-    generateTokenAndSetCookie(res, user_id);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    return res.status(400).json({ message: error.message });
   }
 };
 
 export const login = async (req, res) => {
-  res.send("Hello this is the login page");
+  return res.send("Hello this is the login page");
 };
 
 export const logout = async (req, res) => {
-  res.send("Hello this is the logout page");
+  return res.send("Hello this is the logout page");
 };

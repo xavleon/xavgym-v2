@@ -10,17 +10,23 @@
   },
   "type": "module",
   "dependencies": {
+    "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mailtrap": "^3.4.0",
+    "mailtrap-client": "^1.1.1",
     "mongoose": "^8.8.4",
     "next": "15.0.3",
+    "nodemailer": "^6.9.16",
     "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106"
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "sonner": "^1.7.1",
+    "toastify": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^8",

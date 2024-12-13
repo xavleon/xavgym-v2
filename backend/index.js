@@ -3,6 +3,7 @@ import express from "express";
 import { connectDB } from "./db/connectDB.js";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
+import cors from "cors";
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json()); // to parse the incoming request with JSON payloads
+app.use(cors());
 app.use("/api/auth", authRoutes);
 
 app.listen(4000, () => {
