@@ -1,15 +1,10 @@
+import e from "express";
 import { User } from "../models/User.js";
 import { verficationTokenEmail } from "./emailTemplates.js";
 import { mailtrapClient, sender } from "./mailtrap.config.js";
 
-export const sendVerificationEmail = async (email, verificationToken) => {
+export const sendWelcomeEmail = async (email, verificationToken) => {
   const recipient = [{ email }]; // Recipient array as per Mailtrap API
-
-  const user = await User.findOne({
-    email,
-  });
-
-  const emailHtml = verficationTokenEmail(verificationToken, user.name);
 
   try {
     const response = await mailtrapClient.send({

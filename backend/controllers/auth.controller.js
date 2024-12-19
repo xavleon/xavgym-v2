@@ -51,6 +51,19 @@ export const signup = async (req, res) => {
   }
 };
 
+export const verifyEmail = async (req, res) => {
+  const {code} = req.body;
+  try {
+    const user = await User.findOne({ verificationToken: code,
+      verificationTokenExpiry: { $gt: Date.now() } });
+    if (!user) {
+      throw new Error("Invalid or expired verification token");
+  } catch (error) {
+    
+  }
+};
+
+
 export const login = async (req, res) => {
   return res.send("Hello this is the login page");
 };
